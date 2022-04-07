@@ -1,0 +1,58 @@
+<!--runs tailwind:-->
+<!--npx tailwindcss -i ./src/input.css -o ./dist/output.css --watch-->
+<!--padding vs border-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/brython@3.10.5/brython.js">
+    </script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/brython@3.10.5/brython_stdlib.js">
+    </script>
+</head>
+
+<body id='page' onload="brython({debug:0})" class="bg-gray-900 h-screen" onclick="focusConsole()">
+    <!--this is a very simple interface, a text readout above an input line, where the text scrolls up-->
+
+    <script>
+        function focusConsole() {
+            document.getElementById("console").focus();
+        }
+    </script>
+
+    <script type="text/python">print('importing bananas..')</script>
+
+    <script src="main.py" type="text/python"></script>
+    <div  class="p-4">
+    <div id="button" class="bg-green-500 p-2  rounded-lg border-gray-900 p-8 w-min h-min"></div>
+    </div>
+
+    <!--this is body of the page-->
+    <div id="body" class="font-large p-6 text-[#B8B7B8] rounded-sm pt-2 pl-4">
+        <div id="header" class="pl-12 pt-4 pb-12 font-bold text-2xl">Block-B</div>
+        <!--this is the output-->
+        <div id="readout" class="whitespace-pre-wrap"></div>
+
+        <!--this is the input-->
+        <div>
+            >><input id="console" name="console" autofocus autocomplete="off"
+                class="pl-[13px] focus:outline-none max-w-lg bg-gray-900">
+        </div>
+    </div>
+
+
+
+
+</body>
+
+</html>
+
