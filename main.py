@@ -9,7 +9,10 @@ y = 50
 dx = -5
 dy = 0
 gravity = 0.1
-damping = 1
+damping = 1.05
+y_damping = damping
+x_damping = damping
+ 
 run = None
 ang = 0
 arena_width = page.width - 100
@@ -19,21 +22,31 @@ print(page.height)
 x = random()*arena_width
 x = random()*arena_height
 
-
+def damp():
+    global dx, dy
+    global x_damping, y_damping
+    dx *= x_damping
+    dy *= y_damping
 def render():
     global x, dx, y, dy, gravity
     global arena_width, arena_height
+    global y_damping, x_damping
     moving.style.transform = f"translate({x}px,{y}px) rotate({angle()}deg)"
     x += dx
     y += dy
-    if x>=arena_width: dx *= -1 # right wall
-    if x<=0: dx *= -1 # left wall
+    if x>=arena_width:
+        damp()
+        dx *= -1 # right wall
+    if x<=0:
+        damp()
+        dx *= -1 # left wall
     
     if y >= arena_height:# floor
         y = arena_height
-        dy *= damping
+        damp()
         dy *= -1
     if y <= 0:# ceiling
+        damp()
         y = 0
         dy *= -1
     
